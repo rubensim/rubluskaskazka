@@ -1,17 +1,17 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "Square.h"
-#include <iostream>
+#include "stdafx.h"
 
-int const BOARD_SIZE = 8;
+#include "Square.h"
+#include "Constants.h"
 
 class Board{
 public:
 	Board();
-	~Board();
-    void Init();
+	~Board(){};
 private:
-	Square Squares[BOARD_SIZE][BOARD_SIZE];
+	  Square Squares[BOARD_SIZE][BOARD_SIZE] ;
 };
+
 #endif
