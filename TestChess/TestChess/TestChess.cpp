@@ -10,11 +10,11 @@ using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	ChessGame* chGame = new ChessGame();
+	/*ChessGame* chGame = new ChessGame();
 
 	char color  = 'w';
 	cout << "Please select a color w/b ? ";
-	cin >> color;
+	cin >> color;*/
 	return 0;
 }
 

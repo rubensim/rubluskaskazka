@@ -11,7 +11,7 @@ public:
 	Board();
 	~Board(){};
 private:
-	  Square Squares[BOARD_SIZE][BOARD_SIZE] ;
+	  Square* Squares[BOARD_SIZE][BOARD_SIZE] ;
 };
 
 #endif

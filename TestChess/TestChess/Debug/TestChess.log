@@ -1,25 +1,15 @@
-﻿Build started 12/14/2014 3:31:35 PM.
+﻿Build started 12/16/2014 1:54:39 AM.
      1>Project "L:\Projects\rubluskaskazka\TestChess\TestChess\TestChess.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\TestChess.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Board.cpp ChessGame.cpp Square.cpp TestChess.cpp
-         Board.cpp
-         Generating Code...
-         Compiling...
-         TestChess.cpp
-         ChessGame.cpp
-         Generating Code...
-         Skipping... (no relevant changes detected)
-         Square.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"L:\Projects\rubluskaskazka\TestChess\Debug\TestChess.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"L:\Projects\rubluskaskazka\TestChess\Debug\TestChess.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"L:\Projects\rubluskaskazka\TestChess\Debug\TestChess.lib" /MACHINE:X86 Debug\Board.obj
+     1>Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"L:\Projects\rubluskaskazka\TestChess\TestChess\Debug\TestChess.lib" /NOLOGO Debug\Board.obj
          Debug\ChessGame.obj
          Debug\King.obj
          Debug\Square.obj
          Debug\stdafx.obj
          Debug\TestChess.obj
-         TestChess.vcxproj -> L:\Projects\rubluskaskazka\TestChess\Debug\TestChess.exe
+         TestChess.vcxproj -> L:\Projects\rubluskaskazka\TestChess\TestChess\Debug\TestChess.lib
      1>Done Building Project "L:\Projects\rubluskaskazka\TestChess\TestChess\TestChess.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.81
+Time Elapsed 00:00:00.07

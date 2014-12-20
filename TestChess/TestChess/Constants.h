@@ -5,4 +5,6 @@
 using namespace std;
 
 int const BOARD_SIZE = 8;
+int const SQUARESIZE = 16;
+
 #endif

@@ -3,6 +3,8 @@
 #include "Square.h"
 #include "King.h"
 
+Square::Square()
+{}
 
 Square::Square(Piece* piece){
 	currentPiece  = new King(PieceColor::White);
