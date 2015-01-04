@@ -1,14 +1,16 @@
-﻿Build started 1/4/2015 10:50:36 PM.
+﻿Build started 1/4/2015 11:03:03 PM.
      1>Project "L:\Projects\rubluskaskazka\Chess\ChessUi\ChessUi.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IL:\Projects\rubluskaskazka\Chess\ChessWithUi /I.\GeneratedFiles /I. /IC:\Qt\5.4\msvc2012_opengl\\include /I.\GeneratedFiles\Debug /IC:\Qt\5.4\msvc2012_opengl\\include\QtCore /IC:\Qt\5.4\msvc2012_opengl\\include\QtGui /IC:\Qt\5.4\msvc2012_opengl\\include\QtWidgets /Zi /nologo /W1 /WX- /Od /Oy- /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt BoardUiForm.cpp GeneratedFiles\Debug\moc_chessui.cpp ImagePiece.cpp SquareUiForm.cpp chessui.cpp main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\ChessWithUi /I.\GeneratedFiles /I. /IC:\Qt\5.4\msvc2012_opengl\\include /I.\GeneratedFiles\Debug /IC:\Qt\5.4\msvc2012_opengl\\include\QtCore /IC:\Qt\5.4\msvc2012_opengl\\include\QtGui /IC:\Qt\5.4\msvc2012_opengl\\include\QtWidgets /Zi /nologo /W1 /WX- /Od /Oy- /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt BoardUiForm.cpp chessui.cpp GeneratedFiles\Debug\moc_chessui.cpp ImagePiece.cpp main.cpp SquareUiForm.cpp
          BoardUiForm.cpp
+         chessui.cpp
          moc_chessui.cpp
          ImagePiece.cpp
-         SquareUiForm.cpp
-         chessui.cpp
          main.cpp
+         SquareUiForm.cpp
          Generating Code...
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\ChessWithUi /I.\GeneratedFiles /I. /IC:\Qt\5.4\msvc2012_opengl\\include /I.\GeneratedFiles\Debug /IC:\Qt\5.4\msvc2012_opengl\\include\QtCore /IC:\Qt\5.4\msvc2012_opengl\\include\QtGui /IC:\Qt\5.4\msvc2012_opengl\\include\QtWidgets /Zi /nologo /W1 /WX- /Od /Oy- /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt GeneratedFiles\qrc_chessui.cpp
+         qrc_chessui.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"L:\Projects\rubluskaskazka\Chess\ChessWithUi\Win32\Debug\\ChessUi.exe" /NOLOGO /LIBPATH:C:\Qt\5.4\msvc2012_opengl\\lib qtmaind.lib Qt5Cored.lib Qt5Guid.lib Qt5Widgetsd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"L:\Projects\rubluskaskazka\Chess\ChessWithUi\Win32\Debug\ChessUi.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"L:\Projects\rubluskaskazka\Chess\ChessWithUi\Win32\Debug\ChessUi.lib" /MACHINE:X86 /SAFESEH Debug\BoardUiForm.obj
          Debug\chessui.obj
@@ -18,10 +20,9 @@
          Debug\main.obj
          Debug\SquareUiForm.obj
          L:\Projects\rubluskaskazka\Chess\ChessWithUi\Debug\ChessWithUi.lib
-     1>ChessWithUi.lib(King.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
          ChessUi.vcxproj -> L:\Projects\rubluskaskazka\Chess\ChessWithUi\Win32\Debug\ChessUi.exe
      1>Done Building Project "L:\Projects\rubluskaskazka\Chess\ChessUi\ChessUi.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:10.71
+Time Elapsed 00:00:10.66
