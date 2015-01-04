@@ -43,9 +43,8 @@ void SquareUiForm::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
 	painter->drawRect(rect1);
 }
 
+void SquareUiForm::MovePiece(){
 
-void SquareUiForm::mousePressEvent(QGraphicsSceneMouseEvent *event)
-{
 	if (ImagePiece::currrentPiece != NULL)
 
 		if (ImagePiece::currrentPiece->GetPiece()->CheckMove(ImagePiece::currrentPiece->GetCoordinate(), this->coordinat))
@@ -63,9 +62,11 @@ void SquareUiForm::mousePressEvent(QGraphicsSceneMouseEvent *event)
 			}
 
 
-			lastSquere->image =  NULL;
+			lastSquere->image = NULL;
 			image = ImagePiece::currrentPiece;
-			
+
+			ImagePiece::currrentPiece->GetPiece()->DoMove();
+
 			ImagePiece::currrentPiece->coordinate.SetX(this->coordinat.GetX() + IMAGESIZE / 2);
 			ImagePiece::currrentPiece->coordinate.SetY(this->coordinat.GetY() + IMAGESIZE / 2);
 
@@ -73,10 +74,15 @@ void SquareUiForm::mousePressEvent(QGraphicsSceneMouseEvent *event)
 			image->update();
 
 			Scene->update();
-
 		}
+}
 
+void SquareUiForm::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+	MovePiece();
+	
 	update();
+
 	QGraphicsItem::mousePressEvent(event);
 }
 
@@ -108,7 +114,8 @@ void SquareUiForm::dropEvent(QGraphicsSceneDragDropEvent * event)
 { 
 	if (!(event->mimeData()->imageData().toRectF().x() == this->coordinat.GetX() + IMAGESIZE / 2 && event->mimeData()->imageData().toRectF().y() == this->coordinat.GetY() + IMAGESIZE / 2))
 	{
-		QGraphicsItem::dropEvent(event);
+		MovePiece();
+		update();
 	}
 	
 }

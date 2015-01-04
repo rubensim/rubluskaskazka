@@ -51,7 +51,6 @@ void ImagePiece::mousePressEvent(QGraphicsSceneMouseEvent *event)
 	
 	update();
 
-
 	QGraphicsItem::mousePressEvent(event);
 }
 
@@ -64,5 +63,6 @@ void ImagePiece::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 	mime->setImageData(boundingRect());
 	drag->setMimeData(mime);
 	drag->exec();
+
 
 }

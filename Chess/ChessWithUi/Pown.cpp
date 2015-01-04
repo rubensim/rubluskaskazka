@@ -15,13 +15,16 @@ bool Pown::CheckMove(Coordinate currentPosition, Coordinate movePosition){
 	Coordinate current(x, y);
 
 	//check pawn's move in a first move
-	if (HaseMoved())
+	if (!HaseMoved())
 	{
-		if (current.GetX() == movePosition.GetX() && current.GetY() - 2* SQUARESIZE == movePosition.GetY())
-		return true;
+		if (current.GetX() == movePosition.GetX() && (current.GetY() - SQUARESIZE == movePosition.GetY() || current.GetY() - 2 * SQUARESIZE == movePosition.GetY()))
+		   return true;
 	}
-	if (current.GetX() == movePosition.GetX() && current.GetY() - SQUARESIZE == movePosition.GetY())
-		return true;
+	else
+	{
+		if (current.GetX() == movePosition.GetX() && current.GetY() - SQUARESIZE == movePosition.GetY())
+			return true;
+	}
 
 	return false;
 }

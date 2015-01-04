@@ -35,6 +35,7 @@ public:
 	ImagePiece* GetImage(){ return this->image; }
 	void SetImage(ImagePiece* image){ this->image = image; }
 	
+	
 protected:
 	// overriding mouse events
 	void mousePressEvent(QGraphicsSceneMouseEvent *event);
@@ -43,6 +44,7 @@ protected:
 	void dragLeaveEvent(QGraphicsSceneDragDropEvent *event) override;
 	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) override;
 private:
+	void MovePiece();
 	Coordinate coordinat;
 	ImagePiece *image;
 	QRectF rect;

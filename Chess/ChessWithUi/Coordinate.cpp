@@ -5,7 +5,7 @@
 Coordinate::Coordinate(int a, int b) 
 {
 	this->X = a;
-	this -> Y = b;
+	this->Y = b;
 	/*assert(a >= 0 || a == -1);
 	assert(b >= 0 || a == -1);
 	assert(a<8);
