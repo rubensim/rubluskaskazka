@@ -4,19 +4,20 @@
 #include "stdafx.h"
 
 #include "Piece.h"
-//#include "Coortdinate.h"
+#include "Coortdinate.h"
 
 class Square {
 public:
-	Square();
+	Square(){ this->cordinate = new Coordinate(); }
 	Square(Piece* piece);
 	~Square(){};
 	Piece* GetPiece();
 	void SetPiece(Piece* piece);
+	void CreatePiece(PieceType type, PieceColor color, string image);
+	Coordinate* cordinate;
 private:
 	Piece* currentPiece;
 	PieceColor color;
-	//Coordinate cordinate;
 };
 
 #endif

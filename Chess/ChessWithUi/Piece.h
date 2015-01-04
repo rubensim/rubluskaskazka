@@ -4,21 +4,32 @@
 #include "stdafx.h"
 
 #include "Enums.h"
+#include "Constants.h"
+#include "Coortdinate.h"
 #include <iostream>
 
 using namespace std;
 
 class Piece {
 public:
-	Piece(){};
-	Piece(PieceColor color){};
+	Piece(PieceColor color) :pieceColor(color){ };
+	Piece(PieceColor color, string image) : pieceColor(color), image(image){}
 	virtual ~Piece(){};
-	virtual bool CheckMove()= 0;
-	virtual void DoMove() = 0;
+	virtual bool CheckMove(Coordinate currentPosition, Coordinate movePosition) = 0;
+	void DoMove(){ this->isMoved = true; }
+
+    //get set methods
 	void SetImage(string piecePath) {this->image = piecePath;}
-    PieceColor GetColor(){return this->color;}
+	string GetImage(){ return this->image; }
+	PieceColor GetColor(){ 
+		return this->pieceColor; 
+	}
+
+	bool HaseMoved(){ return this->isMoved; }
+
 protected:
-	PieceColor color;
+	bool isMoved;
+	PieceColor pieceColor;
 	string image;
 };
 

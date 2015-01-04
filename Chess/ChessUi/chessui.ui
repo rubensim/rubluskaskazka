@@ -1,29 +1,209 @@
-<UI version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>ChessUiClass</class>
- <widget class="QMainWindow" name="ChessUiClass" >
-  <property name="objectName" >
-   <string notr="true">ChessUiClass</string>
-  </property>
-  <property name="geometry" >
+ <widget class="QMainWindow" name="ChessUiClass">
+  <property name="geometry">
    <rect>
-	<x>0</x>
-	<y>0</y>
-	<width>600</width>
-	<height>400</height>
+    <x>0</x>
+    <y>0</y>
+    <width>1005</width>
+    <height>670</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>ChessUi</string>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
-  <widget class="QMenuBar" name="menuBar" />
-  <widget class="QToolBar" name="mainToolBar" />
-  <widget class="QWidget" name="centralWidget" />
-  <widget class="QStatusBar" name="statusBar" />
+  <property name="windowTitle">
+   <string>Chess</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="chessui.qrc">
+    <normaloff>:/ChessUi/Resources/chess-icon.png</normaloff>:/ChessUi/Resources/chess-icon.png</iconset>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>64</width>
+    <height>64</height>
+   </size>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>40</y>
+      <width>515</width>
+      <height>515</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>515</width>
+      <height>515</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>515</width>
+      <height>515</height>
+     </size>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="interactive">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QScrollArea" name="steps_Box">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>280</y>
+      <width>251</width>
+      <height>271</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>251</width>
+      <height>271</height>
+     </size>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>249</width>
+       <height>269</height>
+      </rect>
+     </property>
+     <widget class="QGroupBox" name="your_Steps">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>101</width>
+        <height>311</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>101</width>
+        <height>261</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>White(You)</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="opponent_Steps">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>0</y>
+        <width>101</width>
+        <height>331</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Black(Opponent)</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1005</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMEnu">
+    <property name="title">
+     <string>Menu</string>
+    </property>
+    <addaction name="actionNew_Game_2"/>
+    <addaction name="actionSettings"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>About</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+   </widget>
+   <addaction name="menuMEnu"/>
+   <addaction name="menuAbout"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionNew_Game_2">
+   <property name="icon">
+    <iconset resource="chessui.qrc">
+     <normaloff>:/ChessUi/Resources/chess-icon.png</normaloff>:/ChessUi/Resources/chess-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>New Game</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset resource="chessui.qrc">
+     <normaloff>:/ChessUi/Resources/exit.png</normaloff>:/ChessUi/Resources/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="icon">
+    <iconset resource="chessui.qrc">
+     <normaloff>:/ChessUi/Resources/settings.png</normaloff>:/ChessUi/Resources/settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>Settings</string>
+   </property>
+  </action>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources>
-   <include location="chessui.qrc"/>
+  <include location="chessui.qrc"/>
  </resources>
  <connections/>
-</UI>
+</ui>

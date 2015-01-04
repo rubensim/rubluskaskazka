@@ -6,6 +6,7 @@
 #include "Square.h"
 #include "Constants.h"
 
+
 class Board{
 public:
 	Board();

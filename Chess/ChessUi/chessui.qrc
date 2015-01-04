@@ -1,4 +1,20 @@
 <RCC>
-    <qresource prefix="ChessUi">
+    <qresource prefix="/ChessUi">
+        <file>Resources/settings.png</file>
+        <file>Resources/exit.png</file>
+        <file>Resources/chess-icon.png</file>
+        <file>Resources/chess-board-icon.png</file>
+        <file>Resources/black_bishop.png</file>
+        <file>Resources/black_horse.png</file>
+        <file>Resources/black_king.png</file>
+        <file>Resources/black_pown.png</file>
+        <file>Resources/black_queen.png</file>
+        <file>Resources/black_rock.png</file>
+        <file>Resources/white_bishop.png</file>
+        <file>Resources/white_horse.png</file>
+        <file>Resources/white_king.png</file>
+        <file>Resources/white_pown.png</file>
+        <file>Resources/white_queen.png</file>
+        <file>Resources/white_rock.png</file>
     </qresource>
 </RCC>

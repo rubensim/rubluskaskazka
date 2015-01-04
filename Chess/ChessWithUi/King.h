@@ -3,14 +3,15 @@
 
 #include "stdafx.h"
 #include "Piece.h"
+#include "Coortdinate.h"
 
 class King: public Piece {
 public:
-	King(){};
 	King(PieceColor color);
+	King(PieceColor color, string image);
+	
 	~King(){};
-	virtual bool CheckMove();
-	virtual void DoMove();
+	virtual bool CheckMove(Coordinate currentPosition, Coordinate movePosition);
 };
 
 #endif
