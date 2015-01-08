@@ -8,6 +8,7 @@ class ChessGame{
 public:
 	ChessGame();
 	~ChessGame(){};
+
 	void StartGame();
 	void Pause();
 private:

@@ -64,5 +64,20 @@ void ImagePiece::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 	drag->setMimeData(mime);
 	drag->exec();
 
+}
 
+void ImagePiece::SetCoordinate(Coordinate coordinate){ 
+	this->coordinate = coordinate; 
+}
+
+Coordinate ImagePiece::GetCoordinate(){ 
+	return this->coordinate; 
+}
+
+Piece* ImagePiece::GetPiece(){ 
+	return this->piece; 
+}
+
+Coordinate ImagePiece::GetSquareCoordinate(){
+	return Coordinate(this->coordinate.GetX() - IMAGESIZE / 2, this->coordinate.GetY() - IMAGESIZE / 2);
 }

@@ -15,30 +15,46 @@ Coordinate::Coordinate(int a, int b)
 Coordinate::Coordinate() : X(-1), Y(-1)
 {}
 
-Coordinate & Coordinate::operator = (const Coordinate & Other)
+Coordinate::Coordinate(const Coordinate& copy){
+   Copy(copy);
+}
+
+Coordinate & Coordinate::operator = (const Coordinate & other)
 {
-	if (&Other == this)
+	if (&other == this)
 		return *this;
+
+	 Copy(other);
 
 	return *this;
 }
 
-bool Coordinate:: operator<(const Coordinate & Other) const
-{
-	if (X<Other.X)		//First sort to X
-		return true;
-	else if (X > Other.X)	//Well if the other x is lesser..
-		return false;
-	//So The x's are equal. now to compare the y's
-	if (Y< Other.Y)		//If this y is < the other
-		return true;
-	else
-		return false;	//Catches if the other >= to  this y
+bool Coordinate::operator== (const Coordinate & other){
+	return this->X == other.X &&  this->Y == other.Y;
 }
+
 
 Coordinate Coordinate::MoveUp(int step)
 {
 	return Coordinate(this->X, this->Y - step * SQUARESIZE);
+}
+
+void Coordinate::Copy(const Coordinate & other){
+	this->X = other.X;
+	this->Y = other.Y;
+}
+
+Coordinate operator+ (Coordinate& coordinate, pair<int, int> numbers){
+
+	return Coordinate(coordinate.GetX() + numbers.first * SQUARESIZE, coordinate.GetY() + numbers.second * SQUARESIZE);
+}
+
+Coordinate operator+ (Coordinate& coordinate, int number){
+	return Coordinate(coordinate.GetX() + number * SQUARESIZE, coordinate.GetY() + number * SQUARESIZE);
+}
+
+Coordinate operator- (Coordinate& coordinate, int number){
+	return Coordinate(coordinate.GetX() - number * SQUARESIZE, coordinate.GetY() - number * SQUARESIZE);
 }
 
 

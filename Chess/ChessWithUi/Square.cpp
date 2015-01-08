@@ -4,7 +4,19 @@
 #include "King.h"
 
 Square::Square(Piece* piece){
-	this->currentPiece = piece;
+	SetPiece(piece);
+}
+
+Square::Square(Coordinate coordinate){
+	SetCoordinate(coordinate);
+}
+
+Coordinate Square::GetCoordinate() {
+	return this->coordinate; 
+}
+
+void Square::SetCoordinate(Coordinate coordinate){
+	this->coordinate = coordinate;
 }
 
 Piece* Square::GetPiece(){

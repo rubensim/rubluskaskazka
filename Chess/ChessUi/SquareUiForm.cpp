@@ -3,35 +3,34 @@
 #include <QLabel>
 #include "Constants.h"
 #include "Enums.h"
+#include "Square.h"
+#include "chessui.h"
+
 
 QGraphicsScene* SquareUiForm:: Scene = NULL;
+QFormLayout* SquareUiForm::box = NULL;
 SquareUiForm * SquareUiForm::lastSquere = NULL;
 
-SquareUiForm:: SquareUiForm(){
-}
-
-SquareUiForm::SquareUiForm(QColor color, int x, int y){
+SquareUiForm::SquareUiForm(QColor color, Coordinate coordinate){
 
 	setAcceptDrops(true);
 
-	this->coordinat.SetX(x);
-	this->coordinat.SetY(y);
+	this->cSquare = new Square(coordinate);
 
 	this->color = color;
 	this->image = NULL;
 }
 
-SquareUiForm::~SquareUiForm()
-{
-
+SquareUiForm::~SquareUiForm(){
+	delete image;
+	delete cSquare;
 }
 
 QRectF SquareUiForm::boundingRect() const
 {
 	// outer most edges
-	return QRectF(coordinat.GetX(), coordinat.GetY(), SQUARESIZE, SQUARESIZE);
+	return QRectF(GetCoordinate().GetX(), GetCoordinate().GetY(), SQUARESIZE, SQUARESIZE);
 }
-
 
 void SquareUiForm::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
 
@@ -47,7 +46,7 @@ void SquareUiForm::MovePiece(){
 
 	if (ImagePiece::currrentPiece != NULL)
 
-		if (ImagePiece::currrentPiece->GetPiece()->CheckMove(ImagePiece::currrentPiece->GetCoordinate(), this->coordinat))
+		if (ImagePiece::currrentPiece->GetPiece()->CheckMove(ImagePiece::currrentPiece->GetSquareCoordinate(), GetCoordinate()))
 		{
 			if (image != NULL)
 			{
@@ -61,17 +60,17 @@ void SquareUiForm::MovePiece(){
 				}
 			}
 
-
 			lastSquere->image = NULL;
 			image = ImagePiece::currrentPiece;
 
 			ImagePiece::currrentPiece->GetPiece()->DoMove();
-
-			ImagePiece::currrentPiece->coordinate.SetX(this->coordinat.GetX() + IMAGESIZE / 2);
-			ImagePiece::currrentPiece->coordinate.SetY(this->coordinat.GetY() + IMAGESIZE / 2);
+			Coordinate previewsCoordinate(ImagePiece::currrentPiece->GetSquareCoordinate());
+			ImagePiece::currrentPiece->SetCoordinate(GetPieceCoordinate());
 
 			ImagePiece::currrentPiece = NULL;
 			image->update();
+
+			WriteSteps(previewsCoordinate);
 
 			Scene->update();
 		}
@@ -88,7 +87,7 @@ void SquareUiForm::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
 void SquareUiForm::dragEnterEvent(QGraphicsSceneDragDropEvent * event){
 
-	if (!(event->mimeData()->imageData().toRectF().x() == this->coordinat.GetX() + IMAGESIZE / 2 && event->mimeData()->imageData().toRectF().y() == this->coordinat.GetY() + IMAGESIZE / 2))
+	if (!(event->mimeData()->imageData().toRectF().x() == GetCoordinate().GetX() + IMAGESIZE / 2 && event->mimeData()->imageData().toRectF().y() == GetCoordinate().GetY() + IMAGESIZE / 2))
 	{
 		event->setAccepted(true);
 		update();
@@ -97,7 +96,7 @@ void SquareUiForm::dragEnterEvent(QGraphicsSceneDragDropEvent * event){
 
 void SquareUiForm::dragMoveEvent(QGraphicsSceneDragDropEvent * event)
 {
-	if (!(event->mimeData()->imageData().toRectF().x() == this->coordinat.GetX() + IMAGESIZE / 2 && event->mimeData()->imageData().toRectF().y() == this->coordinat.GetY() + IMAGESIZE / 2))
+	if (!(event->mimeData()->imageData().toRectF().x() == GetCoordinate().GetX() + IMAGESIZE / 2 && event->mimeData()->imageData().toRectF().y() == GetCoordinate().GetY() + IMAGESIZE / 2))
 	{
 		event->setAccepted(true);
 		update();
@@ -112,12 +111,39 @@ void SquareUiForm::dragLeaveEvent(QGraphicsSceneDragDropEvent *event)
 
 void SquareUiForm::dropEvent(QGraphicsSceneDragDropEvent * event)
 { 
-	if (!(event->mimeData()->imageData().toRectF().x() == this->coordinat.GetX() + IMAGESIZE / 2 && event->mimeData()->imageData().toRectF().y() == this->coordinat.GetY() + IMAGESIZE / 2))
+	if (!(event->mimeData()->imageData().toRectF().x() == GetCoordinate().GetX() + IMAGESIZE / 2 && event->mimeData()->imageData().toRectF().y() == GetCoordinate().GetY() + IMAGESIZE / 2))
 	{
 		MovePiece();
 		update();
 	}
 	
+}
+
+Coordinate SquareUiForm::GetCoordinate() const{
+	return cSquare->GetCoordinate();
+}
+
+ImagePiece* SquareUiForm:: GetImage(){ 
+	return this->image; 
+}
+
+void SquareUiForm::SetImage(ImagePiece* image)
+{
+	this->image = image;
+	this->cSquare->SetPiece(image->GetPiece());
+}
+
+Coordinate SquareUiForm::GetPieceCoordinate(){ 
+	return Coordinate(this->GetCoordinate().GetX() + IMAGESIZE / 2, this->GetCoordinate().GetY() + IMAGESIZE / 2); 
+}
+
+void SquareUiForm::WriteSteps(Coordinate previewsCoordinate){
+	pair<char, int> current = ChessUi::steps->GetCurrentStep(this->GetCoordinate());
+	pair<char, int> last = ChessUi::steps->GetCurrentStep(previewsCoordinate);
+
+	QLabel *label = new QLabel(last.first + QString::number(last.second) + " -> " + current.first + QString::number(current.second));
+
+	SquareUiForm::box->addRow(label);
 }
 
 

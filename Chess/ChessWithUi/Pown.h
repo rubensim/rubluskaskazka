@@ -2,15 +2,15 @@
 #define POWN_H
 
 #include "stdafx.h"
+
 #include "Piece.h"
 #include "Coortdinate.h"
 
 class Pown : public Piece {
 public:
-	Pown(PieceColor color);
-	Pown(PieceColor color, string image);
-
+	Pown(PieceColor color, string image = "");
 	~Pown(){};
+
 	virtual bool CheckMove(Coordinate currentPosition, Coordinate movePosition);
 };
 

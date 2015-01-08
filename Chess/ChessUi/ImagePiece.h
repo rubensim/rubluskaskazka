@@ -23,10 +23,10 @@ public:
 	bool Pressed;
 
 	//Get set methods
-	void SetCoordinate(Coordinate coordinate){ this->coordinate = coordinate; }
-	Coordinate GetCoordinate(){ return this->coordinate; }
-	Piece* GetPiece(){ return this->piece; }
-	Coordinate coordinate;
+	void SetCoordinate(Coordinate coordinate);
+	Coordinate GetCoordinate();
+	Piece* GetPiece();
+	Coordinate GetSquareCoordinate();
 protected:
 	// overriding mouse events
 	void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
@@ -35,6 +35,7 @@ protected:
 private:
 	Piece *piece;
 	QString imageFile;
+	Coordinate coordinate;
 };
 
 #endif 

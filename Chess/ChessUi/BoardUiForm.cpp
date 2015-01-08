@@ -15,7 +15,7 @@ BoardUiForm::BoardUiForm(int startX, int startY) {
 		for (int j = 0; j < BOARD_SIZE; j++)
 		{
 			QColor color = j % 2 == 0 ? startColor : endColor;
-			squares[i][j] = new SquareUiForm(color, x, y);
+			squares[i][j] = new SquareUiForm(color, Coordinate(x, y));
 			x += SQUARESIZE;
 		}
 

@@ -7,6 +7,7 @@
 #include "ui_chessui.h"
 #include "Constants.h"
 #include "SquareUiForm.h"
+#include "Step.h"
 
 const QString kingPathBlack = ":/ChessUi/Resources/black_king.png";
 const QString kingPathWhite = ":/ChessUi/Resources/white_king.png";
@@ -33,6 +34,8 @@ class ChessUi : public QMainWindow
 public:
 	ChessUi(QWidget *parent = 0);
 	~ChessUi();
+
+	static Step *steps;
 
 public slots:
 	void NewGameClick();

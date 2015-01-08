@@ -8,16 +8,19 @@
 
 class Square {
 public:
-	Square(){ this->cordinate = new Coordinate(); }
+	Square(Coordinate coordinate);
 	Square(Piece* piece);
 	~Square(){};
+
 	Piece* GetPiece();
 	void SetPiece(Piece* piece);
 	void CreatePiece(PieceType type, PieceColor color, string image);
-	Coordinate* cordinate;
+	Coordinate GetCoordinate();
+	void SetCoordinate(Coordinate coordinate); 
 private:
 	Piece* currentPiece;
 	PieceColor color;
+	Coordinate coordinate;
 };
 
 #endif

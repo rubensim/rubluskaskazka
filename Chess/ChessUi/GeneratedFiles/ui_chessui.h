@@ -13,9 +13,11 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QDial>
+#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGraphicsView>
-#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -33,10 +35,15 @@ public:
     QAction *actionSettings;
     QWidget *centralWidget;
     QGraphicsView *graphicsView;
-    QScrollArea *steps_Box;
+    QDial *dial;
+    QDial *dial_2;
+    QScrollArea *steps_box;
     QWidget *scrollAreaWidgetContents;
-    QGroupBox *your_Steps;
-    QGroupBox *opponent_Steps;
+    QFormLayout *formLayout;
+    QLabel *label_2;
+    QLabel *label;
+    QFormLayout *your_steps;
+    QFormLayout *opponent_steps;
     QMenuBar *menuBar;
     QMenu *menuMEnu;
     QMenu *menuAbout;
@@ -47,7 +54,7 @@ public:
     {
         if (ChessUiClass->objectName().isEmpty())
             ChessUiClass->setObjectName(QStringLiteral("ChessUiClass"));
-        ChessUiClass->resize(1005, 670);
+        ChessUiClass->resize(1020, 670);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -86,28 +93,56 @@ public:
         graphicsView->setFrameShape(QFrame::Box);
         graphicsView->setFrameShadow(QFrame::Raised);
         graphicsView->setInteractive(true);
-        steps_Box = new QScrollArea(centralWidget);
-        steps_Box->setObjectName(QStringLiteral("steps_Box"));
-        steps_Box->setGeometry(QRect(640, 280, 251, 271));
-        steps_Box->setMaximumSize(QSize(251, 271));
-        steps_Box->setWidgetResizable(true);
+        dial = new QDial(centralWidget);
+        dial->setObjectName(QStringLiteral("dial"));
+        dial->setGeometry(QRect(570, 70, 231, 151));
+        dial_2 = new QDial(centralWidget);
+        dial_2->setObjectName(QStringLiteral("dial_2"));
+        dial_2->setGeometry(QRect(740, 70, 231, 151));
+        steps_box = new QScrollArea(centralWidget);
+        steps_box->setObjectName(QStringLiteral("steps_box"));
+        steps_box->setGeometry(QRect(610, 350, 300, 200));
+        steps_box->setMinimumSize(QSize(300, 200));
+        steps_box->setMaximumSize(QSize(300, 200));
+        steps_box->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 249, 269));
-        your_Steps = new QGroupBox(scrollAreaWidgetContents);
-        your_Steps->setObjectName(QStringLiteral("your_Steps"));
-        your_Steps->setGeometry(QRect(10, 0, 101, 311));
-        sizePolicy1.setHeightForWidth(your_Steps->sizePolicy().hasHeightForWidth());
-        your_Steps->setSizePolicy(sizePolicy1);
-        your_Steps->setMinimumSize(QSize(101, 261));
-        opponent_Steps = new QGroupBox(scrollAreaWidgetContents);
-        opponent_Steps->setObjectName(QStringLiteral("opponent_Steps"));
-        opponent_Steps->setGeometry(QRect(140, 0, 101, 331));
-        steps_Box->setWidget(scrollAreaWidgetContents);
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 298, 198));
+        formLayout = new QFormLayout(scrollAreaWidgetContents);
+        formLayout->setSpacing(6);
+        formLayout->setContentsMargins(11, 11, 11, 11);
+        formLayout->setObjectName(QStringLiteral("formLayout"));
+        label_2 = new QLabel(scrollAreaWidgetContents);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setMinimumSize(QSize(140, 0));
+        label_2->setMaximumSize(QSize(140, 140));
+
+        formLayout->setWidget(0, QFormLayout::LabelRole, label_2);
+
+        label = new QLabel(scrollAreaWidgetContents);
+        label->setObjectName(QStringLiteral("label"));
+        label->setMinimumSize(QSize(110, 0));
+        label->setMaximumSize(QSize(100, 100));
+
+        formLayout->setWidget(0, QFormLayout::FieldRole, label);
+
+        your_steps = new QFormLayout();
+        your_steps->setSpacing(6);
+        your_steps->setObjectName(QStringLiteral("your_steps"));
+
+        formLayout->setLayout(1, QFormLayout::LabelRole, your_steps);
+
+        opponent_steps = new QFormLayout();
+        opponent_steps->setSpacing(6);
+        opponent_steps->setObjectName(QStringLiteral("opponent_steps"));
+
+        formLayout->setLayout(1, QFormLayout::FieldRole, opponent_steps);
+
+        steps_box->setWidget(scrollAreaWidgetContents);
         ChessUiClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(ChessUiClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1005, 21));
+        menuBar->setGeometry(QRect(0, 0, 1020, 21));
         menuMEnu = new QMenu(menuBar);
         menuMEnu->setObjectName(QStringLiteral("menuMEnu"));
         menuAbout = new QMenu(menuBar);
@@ -138,8 +173,8 @@ public:
         actionNew_Game_2->setShortcut(QApplication::translate("ChessUiClass", "Ctrl+N", 0));
         actionExit->setText(QApplication::translate("ChessUiClass", "Exit", 0));
         actionSettings->setText(QApplication::translate("ChessUiClass", "Settings", 0));
-        your_Steps->setTitle(QApplication::translate("ChessUiClass", "White(You)", 0));
-        opponent_Steps->setTitle(QApplication::translate("ChessUiClass", "Black(Opponent)", 0));
+        label_2->setText(QApplication::translate("ChessUiClass", "White(You)", 0));
+        label->setText(QApplication::translate("ChessUiClass", "Black(Opponent)", 0));
         menuMEnu->setTitle(QApplication::translate("ChessUiClass", "Menu", 0));
         menuAbout->setTitle(QApplication::translate("ChessUiClass", "About", 0));
         menuHelp->setTitle(QApplication::translate("ChessUiClass", "Help", 0));

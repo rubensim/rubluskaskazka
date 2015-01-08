@@ -6,6 +6,11 @@
 #include "King.h"
 #include "Pown.h"
 
+using namespace::std;
+
+Step* ChessUi::steps = new Step();
+
+
 ChessUi::ChessUi(QWidget *parent)
 	: QMainWindow(parent)
 {
@@ -16,12 +21,15 @@ ChessUi::ChessUi(QWidget *parent)
 	scene = new QGraphicsScene(this);
 	scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 	SquareUiForm::Scene = scene;
+	SquareUiForm::box = ui.your_steps;
+
 	ui.graphicsView->setScene(scene);
+	
 	initialX = ui.graphicsView->x();
 	initialY = ui.graphicsView->y();
 
 
-	ui.steps_Box->hide();
+	ui.steps_box->hide();
 
 	
 	//set slots
@@ -34,11 +42,9 @@ ChessUi::~ChessUi()
 
 }
 
-
-
 void ChessUi::NewGameClick()
 {
-	ui.steps_Box->show();
+	ui.steps_box->show();
 
 	InitBoardNumbers();
 	NewGame();
@@ -72,7 +78,6 @@ void ChessUi::InitBoardNumbers()
 
 void ChessUi::NewGame()
 {
-
 	int x = initialX;
 	int y = initialY- SQUARESIZE;
 
@@ -80,18 +85,26 @@ void ChessUi::NewGame()
 	QColor endColor = Qt::white;
 
 	for (int i = 0; i < BOARD_SIZE; i++){
+		
 		for (int j = 0; j < BOARD_SIZE; j++)
 		{
+			Coordinate coordinate = Coordinate(x, y);
 			QColor color = j % 2 == 0 ? startColor : endColor;
-			squares[i][j] = new SquareUiForm(color, x, y);
-			x += SQUARESIZE;
+			squares[i][j] = new SquareUiForm(color, coordinate);
+
+			steps->RegisterStep(pair<char, int>('A' - 1 + (j + 1),  i + 1), coordinate);
+
 			scene->addItem(squares[i][j]);
+
+			x += SQUARESIZE;
+			
 		}
 
 		y -= SQUARESIZE;
 		x = ui.graphicsView->x();
 		startColor = i % 2 == 0 ? Qt::white : Qt::black;
 		endColor = i % 2 == 0 ? Qt::black : Qt::white;
+
 	}
 
 	SetPieces();
@@ -100,7 +113,7 @@ void ChessUi::NewGame()
 
 void ChessUi::CreatePiece(int i, int j, Piece *piece, QColor color, QString imageFile)
 {
-	ImagePiece *image = new ImagePiece(imageFile, squares[i][j]->GetCoordinate().GetX() + IMAGESIZE / 2, squares[i][j]->GetCoordinate().GetY() + IMAGESIZE / 2, piece);
+	ImagePiece *image = new ImagePiece(imageFile, squares[i][j]->GetPieceCoordinate(), piece);
 	squares[i][j]->SetImage(image);
 	scene->addItem(squares[i][j]->GetImage());
 }
@@ -144,5 +157,4 @@ void  ChessUi::SetPawns()
 		// Place black pawn
 		CreatePiece(1, j, new Pown(PieceColor::White), PieceColor::White, ponePathWhite);
 	}
-
 }
