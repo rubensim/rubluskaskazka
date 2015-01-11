@@ -6,7 +6,7 @@
 Queen::Queen(PieceColor color, string image) :Piece(color, image){}
 Queen::~Queen(){}
 
-bool Queen::CheckMove(Coordinate currentPosition, Coordinate movePosition){
+bool Queen::CheckMove(Coordinate currentPosition, Coordinate movePosition, bool allowDoCornerStep){
 	
 	if (currentPosition.GetX() == movePosition.GetX() || currentPosition.GetY() == movePosition.GetY() ||
 		abs(currentPosition.GetX() - movePosition.GetX()) == abs(currentPosition.GetY() - movePosition.GetY()))

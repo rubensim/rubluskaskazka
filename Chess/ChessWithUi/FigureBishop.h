@@ -9,7 +9,7 @@ class Bishop : public Piece {
 public:
 	Bishop(PieceColor color, string image = "");
 	~Bishop();
-	virtual bool CheckMove(Coordinate currentPosition, Coordinate movePosition);
+	virtual bool CheckMove(Coordinate currentPosition, Coordinate movePosition, bool allowDoCornerStep = false);
 };
 
 #endif

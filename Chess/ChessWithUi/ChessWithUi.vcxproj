@@ -103,8 +103,8 @@
     <ClCompile Include="FigureKnight.cpp" />
     <ClCompile Include="FigureQueen.cpp" />
     <ClCompile Include="FigureRock.cpp" />
-    <ClCompile Include="King.cpp" />
-    <ClCompile Include="Pown.cpp" />
+    <ClCompile Include="FigureKing.cpp" />
+    <ClCompile Include="FigurePown.cpp" />
     <ClCompile Include="Square.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

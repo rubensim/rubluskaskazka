@@ -9,7 +9,7 @@ class Rock : public Piece {
 public:
 	Rock(PieceColor color, string image = "");
 	~Rock();
-	virtual bool CheckMove(Coordinate currentPosition, Coordinate movePosition);
+	virtual bool CheckMove(Coordinate currentPosition, Coordinate movePosition, bool allowDoCornerStep = false);
 };
 
 #endif

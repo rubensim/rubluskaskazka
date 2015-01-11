@@ -10,7 +10,7 @@ public:
 	King(PieceColor color, string image);
 	~King();
 
-	virtual bool CheckMove(Coordinate currentPosition, Coordinate movePosition);
+	virtual bool CheckMove(Coordinate currentPosition, Coordinate movePosition, bool allowDoCornerStep = false);
 };
 
 #endif

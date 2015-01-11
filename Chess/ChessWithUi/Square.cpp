@@ -36,7 +36,7 @@ void Square::SetPiece(Piece* piece){
 bool  Square::MovePiece(Square* square){
 	if (LastStepColor != this->currentPiece->GetColor())
 	{
-		if (this->currentPiece->CheckMove(this->coordinate, square->GetCoordinate()))	{
+		if (this->currentPiece->CheckMove(this->coordinate, square->GetCoordinate(), square->GetPiece() != nullptr))	{
 			if (square->GetPiece() != nullptr)
 			{
 				if (square->GetPiece()->GetColor() != this->currentPiece->GetColor())

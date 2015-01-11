@@ -9,7 +9,7 @@ class Queen : public Piece {
 public:
 	Queen(PieceColor color, string image = "");
 	~Queen();
-	virtual bool CheckMove(Coordinate currentPosition, Coordinate movePosition);
+	virtual bool CheckMove(Coordinate currentPosition, Coordinate movePosition, bool allowDoCornerStep = false);
 };
 
 #endif

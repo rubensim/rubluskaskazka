@@ -13,7 +13,7 @@ public:
 	Piece(PieceColor color, string image) :pieceColor(color), image(image){ this->isMoved = false; };
 	virtual ~Piece(){}
 
-	virtual bool CheckMove(Coordinate currentPosition, Coordinate movePosition) = 0;
+	virtual bool CheckMove(Coordinate currentPosition, Coordinate movePosition, bool allowDoCornerStep = false) = 0;
 
 	void DoMove(){ this->isMoved = true; }
 

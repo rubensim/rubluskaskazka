@@ -11,7 +11,7 @@ public:
 	Pown(PieceColor color, string image);
 	~Pown(){};
 
-	virtual bool CheckMove(Coordinate currentPosition, Coordinate movePosition);
+	virtual bool CheckMove(Coordinate currentPosition, Coordinate movePosition, bool allowDoCornerStep = false);
 };
 
 #endif

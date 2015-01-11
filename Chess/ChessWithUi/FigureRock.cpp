@@ -7,7 +7,7 @@ Rock::Rock(PieceColor color, string image) :Piece(color, image){}
 
 Rock::~Rock(){}
 
-bool Rock::CheckMove(Coordinate currentPosition, Coordinate movePosition){
+bool Rock::CheckMove(Coordinate currentPosition, Coordinate movePosition, bool allowDoCornerStep){
 	if (currentPosition.GetX() == movePosition.GetX() || currentPosition.GetY() == movePosition.GetY())
 		return true;
 
