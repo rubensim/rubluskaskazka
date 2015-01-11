@@ -3,13 +3,16 @@
 
 
 #include <iostream>
-
+#include<fstream>
 
 #include <map>
 #include <utility>
+#include "string"
+#include<vector>
 
 #include "Constants.h"
 #include "Coortdinate.h"
+#include "Enums.h"
 
 using namespace::std;
 
@@ -17,13 +20,16 @@ class Step{
 public:
 	Step();
 	~Step();
-	pair<char, int> GetCurrentStep(Coordinate coordinate);
+	pair<char, int> GetStep(Coordinate coordinate);
+	string GetCurrentStep(PieceColor);
 	Coordinate GetCoordinate(pair<char, int> step);
 	void RegisterStep(pair<char, int> key, Coordinate coordinate);
-
+	void WriteStep(Coordinate prev, Coordinate current, PieceColor color);
+	
 private:
+	vector<string> &split(string &s, char delim, vector<string> &elems);
+	void Write(ostream& out, pair<char, int> prev, pair<char, int> current, PieceColor color);
 	map<pair<char, int>, Coordinate> steps;
-	pair<char, int> currentStep;
 	
 };
 #endif // !STEP_H

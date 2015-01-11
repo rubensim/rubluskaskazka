@@ -14,12 +14,11 @@ class SquareUiForm : public QGraphicsObject
 {
 
 public:
-	SquareUiForm(QColor color, Coordinate coordinate);
+	SquareUiForm();
+	SquareUiForm(Square* square);
 	~SquareUiForm();
 
-	static QGraphicsScene *Scene;
-	static SquareUiForm *lastSquere;
-	static QFormLayout *box;
+	static QFormLayout *box[2];
 
 	//ovveride QGraphicsItem functions
 	QRectF boundingRect() const;
@@ -34,7 +33,8 @@ public:
 	Coordinate GetCoordinate() const;
 	ImagePiece* GetImage();
 	void SetImage(ImagePiece* image);
-	Coordinate GetPieceCoordinate();
+
+	QColor GetColorBySquareColor(PieceColor color);
 	
 protected:
 	// overriding mouse events
@@ -48,7 +48,6 @@ private:
 	void WriteSteps(Coordinate previewsCoordinate);
 	
 	ImagePiece *image;
-	QRectF rect;
 	QColor color;
 	
 	Square *cSquare;

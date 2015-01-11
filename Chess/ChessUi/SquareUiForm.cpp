@@ -1,33 +1,37 @@
 #include <qdrag.h>
-#include "SquareUiForm.h"
 #include <QLabel>
+
+#include "SquareUiForm.h"
 #include "Constants.h"
 #include "Enums.h"
 #include "Square.h"
-#include "chessui.h"
+#include "BoardUiForm.h"
+#include "WorkWithCoordinateSystem.h"
 
+QFormLayout* SquareUiForm::box[] = {};
 
-QGraphicsScene* SquareUiForm:: Scene = NULL;
-QFormLayout* SquareUiForm::box = NULL;
-SquareUiForm * SquareUiForm::lastSquere = NULL;
+SquareUiForm::SquareUiForm(){}
 
-SquareUiForm::SquareUiForm(QColor color, Coordinate coordinate){
-
+SquareUiForm::SquareUiForm(Square* square){
 	setAcceptDrops(true);
 
-	this->cSquare = new Square(coordinate);
+	this->cSquare = square;
 
-	this->color = color;
+	this->color = GetColorBySquareColor(square->GetColor());
 	this->image = NULL;
+
+	if (square->GetPiece() != nullptr)
+	{ 
+		this->SetImage(new ImagePiece(WorkWithCoordinateSystem::GetPieceCoordinate(this->GetCoordinate()), square->GetPiece()));
+	}
 }
 
 SquareUiForm::~SquareUiForm(){
-	delete image;
-	delete cSquare;
+//	delete image;
+	//delete cSquare;
 }
 
-QRectF SquareUiForm::boundingRect() const
-{
+QRectF SquareUiForm::boundingRect() const{
 	// outer most edges
 	return QRectF(GetCoordinate().GetX(), GetCoordinate().GetY(), SQUARESIZE, SQUARESIZE);
 }
@@ -39,42 +43,26 @@ void SquareUiForm::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
 	QBrush brush(color, Qt::SolidPattern);
 
 	painter->fillRect(rect1, brush);
+
 	painter->drawRect(rect1);
 }
 
 void SquareUiForm::MovePiece(){
 
-	if (ImagePiece::currrentPiece != NULL)
-
-		if (ImagePiece::currrentPiece->GetPiece()->CheckMove(ImagePiece::currrentPiece->GetSquareCoordinate(), GetCoordinate()))
+	if (BoardUiForm::currrentSquare != nullptr)
+	{
+		
+		if (BoardUiForm::currrentSquare->cSquare->MovePiece(cSquare))
 		{
-			if (image != NULL)
-			{
-				if (image->GetPiece()->GetColor() != ImagePiece::currrentPiece->GetPiece()->GetColor())
-				{
-					Scene->removeItem(image);
-				}
-				else
-				{
-					return;
-				}
-			}
-
-			lastSquere->image = NULL;
-			image = ImagePiece::currrentPiece;
-
-			ImagePiece::currrentPiece->GetPiece()->DoMove();
-			Coordinate previewsCoordinate(ImagePiece::currrentPiece->GetSquareCoordinate());
-			ImagePiece::currrentPiece->SetCoordinate(GetPieceCoordinate());
-
-			ImagePiece::currrentPiece = NULL;
-			image->update();
-
-			WriteSteps(previewsCoordinate);
-
-			Scene->update();
+			SetImage(BoardUiForm::currrentSquare->GetImage());
+			WriteSteps(BoardUiForm::currrentSquare->GetCoordinate());
+			BoardUiForm::currrentSquare = nullptr;
 		}
+
+		scene()->update();
+	}
 }
+
 
 void SquareUiForm::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
@@ -129,22 +117,42 @@ ImagePiece* SquareUiForm:: GetImage(){
 
 void SquareUiForm::SetImage(ImagePiece* image)
 {
+	if (this->image != NULL)
+	{
+		this->image->setParentItem(NULL);
+		scene()->removeItem(this->image);
+	}
+
 	this->image = image;
+
+	this->image->setParentItem(this);
+
 	this->cSquare->SetPiece(image->GetPiece());
+
+	this->image->SetCoordinate(WorkWithCoordinateSystem::GetPieceCoordinate(GetCoordinate()));
+
 }
 
-Coordinate SquareUiForm::GetPieceCoordinate(){ 
-	return Coordinate(this->GetCoordinate().GetX() + IMAGESIZE / 2, this->GetCoordinate().GetY() + IMAGESIZE / 2); 
-}
 
 void SquareUiForm::WriteSteps(Coordinate previewsCoordinate){
-	pair<char, int> current = ChessUi::steps->GetCurrentStep(this->GetCoordinate());
-	pair<char, int> last = ChessUi::steps->GetCurrentStep(previewsCoordinate);
-
-	QLabel *label = new QLabel(last.first + QString::number(last.second) + " -> " + current.first + QString::number(current.second));
-
-	SquareUiForm::box->addRow(label);
+	QString step = QString::fromStdString(Board::Steps->GetCurrentStep(this->cSquare->GetPiece()->GetColor()));
+	
+	if (!step.isEmpty())
+	{
+		QLabel *label = new QLabel(step);
+		SquareUiForm::box[this->cSquare->GetPiece()->GetColor()]->addRow(label);
+	}
 }
+
+QColor SquareUiForm::GetColorBySquareColor(PieceColor color){
+
+	if (color == PieceColor::White)
+		return Qt::white;
+
+	return Qt::black;
+
+}
+
 
 
 

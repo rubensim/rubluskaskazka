@@ -7,7 +7,7 @@
 
 class King: public Piece {
 public:
-	King(PieceColor color, string image = "");
+	King(PieceColor color, string image);
 	~King();
 
 	virtual bool CheckMove(Coordinate currentPosition, Coordinate movePosition);

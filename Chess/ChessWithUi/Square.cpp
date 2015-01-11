@@ -1,14 +1,20 @@
 #include "stdafx.h"
 
 #include "Square.h"
-#include "King.h"
+#include "Board.h"
 
-Square::Square(Piece* piece){
+PieceColor Square::LastStepColor = PieceColor::Black;
+
+Square::Square(Coordinate coordinate, PieceColor color, Piece* piece){
+
 	SetPiece(piece);
+	SetCoordinate(coordinate);
+	this->color = color;
 }
 
-Square::Square(Coordinate coordinate){
-	SetCoordinate(coordinate);
+
+Square::~Square(){
+//	delete currentPiece;
 }
 
 Coordinate Square::GetCoordinate() {
@@ -27,31 +33,39 @@ void Square::SetPiece(Piece* piece){
 	this->currentPiece = piece;
 }
 
-void Square::CreatePiece(PieceType type, PieceColor color, string image){
-	switch (type)
+bool  Square::MovePiece(Square* square){
+	if (LastStepColor != this->currentPiece->GetColor())
 	{
-	case _PAWN:
-		this->currentPiece = new King(color, image);
-		break;
-	case _BISHOP:
-		this->currentPiece = new King(color, image);
-		break;
-	case _ROOK:
-		this->currentPiece = new King(color, image);
-		break;
-	case _KING:
-		this->currentPiece = new King(color, image);
-		break;
-	case _KNIGHT:
-		this->currentPiece = new King(color, image);
-		break;
-	case _QUEEN:
-		this->currentPiece = new King(color, image);
-		break;
-	default:
-		this->currentPiece = NULL;
-		break;
+		if (this->currentPiece->CheckMove(this->coordinate, square->GetCoordinate()))	{
+			if (square->GetPiece() != nullptr)
+			{
+				if (square->GetPiece()->GetColor() != this->currentPiece->GetColor())
+				{
+					square->SetPiece(nullptr);
+				}
+				else
+				{
+					return false;
+				}
+			}
 
+			Board::Steps->WriteStep(this->GetCoordinate(), square->GetCoordinate(), this->GetPiece()->GetColor());
+
+			this->currentPiece->DoMove();
+			square->SetPiece(this->currentPiece);
+
+			LastStepColor = this->currentPiece->GetColor();
+
+			return true;
+		}
 	}
+
+	return false;
 }
+
+PieceColor Square::GetColor(){
+	return this->color;
+}
+
+
 

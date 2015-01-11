@@ -13,6 +13,8 @@ public:
 	Coordinate(const Coordinate& copy);
     Coordinate & operator = (const Coordinate & other);	
     bool operator== (const Coordinate & other);
+	bool operator<(const Coordinate& other) const;
+	bool operator>(const Coordinate & other);
 	Coordinate MoveUp(int step);
 	
 	int GetX() const{ return this->X; }

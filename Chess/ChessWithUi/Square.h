@@ -8,15 +8,18 @@
 
 class Square {
 public:
-	Square(Coordinate coordinate);
-	Square(Piece* piece);
-	~Square(){};
+	Square(Coordinate coordinate, PieceColor color,Piece* piece = nullptr);
+	~Square();
 
 	Piece* GetPiece();
 	void SetPiece(Piece* piece);
-	void CreatePiece(PieceType type, PieceColor color, string image);
+	
 	Coordinate GetCoordinate();
 	void SetCoordinate(Coordinate coordinate); 
+	bool MovePiece(Square* square);
+	PieceColor GetColor();
+
+	static PieceColor LastStepColor;
 private:
 	Piece* currentPiece;
 	PieceColor color;

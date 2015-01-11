@@ -1,14 +1,10 @@
 #include <QLabel>
 #include <QFont>
 #include "chessui.h"
-#include "ImagePiece.h"
-#include "Piece.h"
-#include "King.h"
-#include "Pown.h"
+
+#include "Constants.h"
 
 using namespace::std;
-
-Step* ChessUi::steps = new Step();
 
 
 ChessUi::ChessUi(QWidget *parent)
@@ -20,14 +16,16 @@ ChessUi::ChessUi(QWidget *parent)
 
 	scene = new QGraphicsScene(this);
 	scene->setItemIndexMethod(QGraphicsScene::NoIndex);
-	SquareUiForm::Scene = scene;
-	SquareUiForm::box = ui.your_steps;
+
+	SquareUiForm::box[0] = ui.your_steps;
+	SquareUiForm::box[1] = ui.opponent_steps;
 
 	ui.graphicsView->setScene(scene);
 	
 	initialX = ui.graphicsView->x();
 	initialY = ui.graphicsView->y();
 
+	this->board = new BoardUiForm(ui.graphicsView->width(), ui.graphicsView->height());
 
 	ui.steps_box->hide();
 
@@ -47,7 +45,10 @@ void ChessUi::NewGameClick()
 	ui.steps_box->show();
 
 	InitBoardNumbers();
-	NewGame();
+
+	board->NewGame(0, initialY);
+
+	scene->addItem(board);
 }
 
 void ChessUi::InitBoardNumbers()
@@ -73,88 +74,5 @@ void ChessUi::InitBoardNumbers()
 		HorizontalDownlabel->show();
 
 		horizontalX -= SQUARESIZE;
-	}
-}
-
-void ChessUi::NewGame()
-{
-	int x = initialX;
-	int y = initialY- SQUARESIZE;
-
-	QColor startColor = Qt::black;
-	QColor endColor = Qt::white;
-
-	for (int i = 0; i < BOARD_SIZE; i++){
-		
-		for (int j = 0; j < BOARD_SIZE; j++)
-		{
-			Coordinate coordinate = Coordinate(x, y);
-			QColor color = j % 2 == 0 ? startColor : endColor;
-			squares[i][j] = new SquareUiForm(color, coordinate);
-
-			steps->RegisterStep(pair<char, int>('A' - 1 + (j + 1),  i + 1), coordinate);
-
-			scene->addItem(squares[i][j]);
-
-			x += SQUARESIZE;
-			
-		}
-
-		y -= SQUARESIZE;
-		x = ui.graphicsView->x();
-		startColor = i % 2 == 0 ? Qt::white : Qt::black;
-		endColor = i % 2 == 0 ? Qt::black : Qt::white;
-
-	}
-
-	SetPieces();
-	SetPawns();
-}
-
-void ChessUi::CreatePiece(int i, int j, Piece *piece, QColor color, QString imageFile)
-{
-	ImagePiece *image = new ImagePiece(imageFile, squares[i][j]->GetPieceCoordinate(), piece);
-	squares[i][j]->SetImage(image);
-	scene->addItem(squares[i][j]->GetImage());
-}
-
-void  ChessUi::SetPieces(){
-	//white pieces
-	CreatePiece(BOARD_SIZE - 1, 0, new King(PieceColor::Black), PieceColor::Black, rookPathBlack);
-	CreatePiece(BOARD_SIZE - 1, BOARD_SIZE - 1, new King(PieceColor::Black), PieceColor::Black, rookPathBlack);
-
-	CreatePiece(BOARD_SIZE - 1, 1, new King(PieceColor::Black), PieceColor::Black, knightPathBlack);
-	CreatePiece(BOARD_SIZE - 1, BOARD_SIZE - 2, new King(PieceColor::Black), PieceColor::Black, knightPathBlack);
-
-	CreatePiece(BOARD_SIZE - 1, 2 , new King(PieceColor::Black), PieceColor::White, bishopPathBlack);
-	CreatePiece(BOARD_SIZE - 1, BOARD_SIZE - 3, new King(PieceColor::Black), PieceColor::Black , bishopPathBlack);
-
-	CreatePiece(BOARD_SIZE - 1, 3, new King(PieceColor::Black), PieceColor::White, queenPathBlack);
-	CreatePiece(BOARD_SIZE - 1, BOARD_SIZE - 4, new King(PieceColor::Black), PieceColor::Black, kingPathBlack);
-
-	//black pieces
-
-	CreatePiece(0, 0, new King(PieceColor::White), PieceColor::White, rookPathWhite);
-	CreatePiece(0, BOARD_SIZE - 1, new King(PieceColor::White), PieceColor::White, rookPathWhite);
-
-	CreatePiece(0, 1, new King(PieceColor::White), PieceColor::White, knightPathWhite);
-	CreatePiece(0, BOARD_SIZE - 2, new King(PieceColor::White), PieceColor::White, knightPathWhite);
-
-	CreatePiece(0, 2, new King(PieceColor::White), PieceColor::White, bishopPathWhite);
-	CreatePiece(0, BOARD_SIZE - 3, new King(PieceColor::White), PieceColor::White, bishopPathWhite);
-
-	CreatePiece(0, 3, new King(PieceColor::White), PieceColor::White, queenPathWhite);
-	CreatePiece(0, BOARD_SIZE - 4, new King(PieceColor::White), PieceColor::White, kingPathWhite);
-
-}
-void  ChessUi::SetPawns()
-{
-	for (int j = 0; j < BOARD_SIZE; j++)
-	{
-		// Place white pawn
-		CreatePiece(BOARD_SIZE - 2, j, new Pown(PieceColor::Black), PieceColor::Black, ponePathBlack);
-
-		// Place black pawn
-		CreatePiece(1, j, new Pown(PieceColor::White), PieceColor::White, ponePathWhite);
 	}
 }

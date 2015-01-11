@@ -54,6 +54,9 @@
     <ClInclude Include="Step.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="WorkWithCoordinateSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -80,5 +83,8 @@
     <ClCompile Include="Step.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
 </Project>

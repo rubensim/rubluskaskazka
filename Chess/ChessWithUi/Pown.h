@@ -8,7 +8,7 @@
 
 class Pown : public Piece {
 public:
-	Pown(PieceColor color, string image = "");
+	Pown(PieceColor color, string image);
 	~Pown(){};
 
 	virtual bool CheckMove(Coordinate currentPosition, Coordinate movePosition);

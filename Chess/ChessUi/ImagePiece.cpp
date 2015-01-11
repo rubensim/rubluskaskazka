@@ -1,30 +1,17 @@
 #include <qtransform.h>
 #include <qdrag.h>
+
 #include "ImagePiece.h"
 #include "Constants.h"
-#include "SquareUiForm.h"
+#include "BoardUiForm.h"
+#include "WorkWithCoordinateSystem.h"
 
-ImagePiece* ImagePiece:: currrentPiece = NULL;
-
-
-ImagePiece::ImagePiece(QString imageFile, int x, int y, Piece* piece) 
+ImagePiece::ImagePiece(Coordinate coordiate, Piece* piece)
 {
 	this->piece = piece;
-	this->imageFile = imageFile;
-	this->coordinate.SetX(x);
-	this->coordinate.SetY(y);
-
-	setFlag(ItemIsMovable);
-
-}
-
-ImagePiece::ImagePiece(QString imageFile, Coordinate coordiate, Piece* piece)
-{
-	this->piece = piece;
-	this->imageFile = imageFile;
 	this->coordinate = coordiate;
 
-   setFlag(ItemIsMovable);
+    setFlag(ItemIsMovable);
 }
 
 QRectF ImagePiece::boundingRect() const
@@ -37,7 +24,7 @@ void ImagePiece::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 {
 	QRectF rect = boundingRect();
 
-	QImage image = QImage(imageFile);
+	QImage image = QImage(QString::fromStdString(this->piece->GetImage()));
 
 	QPoint point(coordinate.GetX(), coordinate.GetY());
 
@@ -46,9 +33,8 @@ void ImagePiece::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 
 void ImagePiece::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-	currrentPiece = this;
-	SquareUiForm::lastSquere = dynamic_cast<SquareUiForm*>(SquareUiForm::Scene->itemAt(this->coordinate.GetX() - IMAGESIZE / 2, this->coordinate.GetY() + IMAGESIZE / 2, QTransform()));;
-	
+	BoardUiForm::currrentSquare = BoardUiForm::coordinateSystem[WorkWithCoordinateSystem::GetSquareCoordinate(this->coordinate)];
+
 	update();
 
 	QGraphicsItem::mousePressEvent(event);
@@ -76,8 +62,4 @@ Coordinate ImagePiece::GetCoordinate(){
 
 Piece* ImagePiece::GetPiece(){ 
 	return this->piece; 
-}
-
-Coordinate ImagePiece::GetSquareCoordinate(){
-	return Coordinate(this->coordinate.GetX() - IMAGESIZE / 2, this->coordinate.GetY() - IMAGESIZE / 2);
 }

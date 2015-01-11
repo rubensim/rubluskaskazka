@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImagePiece.h" />
+    <ClInclude Include="resource.h" />
     <CustomBuild Include="BoardUiForm.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </Message>
@@ -166,6 +167,12 @@
     <ProjectReference Include="..\ChessWithUi\ChessWithUi.vcxproj">
       <Project>{d965d045-a8d5-48fd-8208-5b0e37ed60ef}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ChessUi.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="StepsFile" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

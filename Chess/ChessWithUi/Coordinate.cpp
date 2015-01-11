@@ -33,6 +33,23 @@ bool Coordinate::operator== (const Coordinate & other){
 	return this->X == other.X &&  this->Y == other.Y;
 }
 
+bool Coordinate::operator<(const Coordinate& other) const
+{
+	if (this->X < other.GetX())
+		return true;
+	if (this->X > other.GetX())
+		return false;
+	if (this->Y < other.GetY())
+		return true;
+
+	return false;
+}
+
+bool Coordinate::operator>(const Coordinate & other)
+{
+	return !(*this == other || *this < other);
+}
+
 
 Coordinate Coordinate::MoveUp(int step)
 {
@@ -56,5 +73,7 @@ Coordinate operator+ (Coordinate& coordinate, int number){
 Coordinate operator- (Coordinate& coordinate, int number){
 	return Coordinate(coordinate.GetX() - number * SQUARESIZE, coordinate.GetY() - number * SQUARESIZE);
 }
+
+
 
 
