@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "Pown.h"
+#include "FigurePown.h"
 #include "Constants.h"
 
 Pown::Pown(PieceColor color, string image) :Piece(color, image){}

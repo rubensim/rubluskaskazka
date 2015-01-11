@@ -1,10 +1,13 @@
 #include "stdafx.h"
 
 #include "Board.h"
-#include "Piece.h"
-#include "Pown.h"
-#include "King.h"
 
+#include "FigurePown.h"
+#include "FigureKing.h"
+#include "FigureBishop.h"
+#include "FigureKnight.h"
+#include "FigureQueen.h"
+#include "FigureRock.h"
 
 Step* Board::Steps = new Step();
 
@@ -33,30 +36,30 @@ void  Board::SetPawns()
 
 void  Board::SetPieces(){
 	//white pieces
-	CreatePiece(BOARD_SIZE - 1, 0, new King(PieceColor::Black, ROOKPATHBLACK));
-	CreatePiece(BOARD_SIZE - 1, BOARD_SIZE - 1, new King(PieceColor::Black, ROOKPATHBLACK));
+	CreatePiece(BOARD_SIZE - 1, 0, new Rock(PieceColor::Black, ROOKPATHBLACK));
+	CreatePiece(BOARD_SIZE - 1, BOARD_SIZE - 1, new Rock(PieceColor::Black, ROOKPATHBLACK));
 
-	CreatePiece(BOARD_SIZE - 1, 1, new King(PieceColor::Black, KNIGHTPATHBLACK));
-	CreatePiece(BOARD_SIZE - 1, BOARD_SIZE - 2, new King(PieceColor::Black, KNIGHTPATHBLACK));
+	CreatePiece(BOARD_SIZE - 1, 1, new Knight(PieceColor::Black, KNIGHTPATHBLACK));
+	CreatePiece(BOARD_SIZE - 1, BOARD_SIZE - 2, new Knight(PieceColor::Black, KNIGHTPATHBLACK));
 
-	CreatePiece(BOARD_SIZE - 1, 2, new King(PieceColor::Black, BISHOPPATHBLACK));
-	CreatePiece(BOARD_SIZE - 1, BOARD_SIZE - 3, new King(PieceColor::Black, BISHOPPATHBLACK));
+	CreatePiece(BOARD_SIZE - 1, 2, new Bishop(PieceColor::Black, BISHOPPATHBLACK));
+	CreatePiece(BOARD_SIZE - 1, BOARD_SIZE - 3, new Bishop(PieceColor::Black, BISHOPPATHBLACK));
 
-	CreatePiece(BOARD_SIZE - 1, 3, new King(PieceColor::Black, QUEENPATHBLACK));
+	CreatePiece(BOARD_SIZE - 1, 3, new Queen(PieceColor::Black, QUEENPATHBLACK));
 	CreatePiece(BOARD_SIZE - 1, BOARD_SIZE - 4, new King(PieceColor::Black, KINGPATHBLACK));
 
 	//black pieces
 
-	CreatePiece(0, 0, new King(PieceColor::White, ROOKPATHWHITE));
-	CreatePiece(0, BOARD_SIZE - 1, new King(PieceColor::White, ROOKPATHWHITE));
+	CreatePiece(0, 0, new Rock(PieceColor::White, ROOKPATHWHITE));
+	CreatePiece(0, BOARD_SIZE - 1, new Rock(PieceColor::White, ROOKPATHWHITE));
 
-	CreatePiece(0, 1, new King(PieceColor::White, KNIGHTPATHWHITE));
-	CreatePiece(0, BOARD_SIZE - 2, new King(PieceColor::White, KNIGHTPATHWHITE));
+	CreatePiece(0, 1, new Knight(PieceColor::White, KNIGHTPATHWHITE));
+	CreatePiece(0, BOARD_SIZE - 2, new Knight(PieceColor::White, KNIGHTPATHWHITE));
 
-	CreatePiece(0, 2, new King(PieceColor::White, BISHOPPATHWHITE));
-	CreatePiece(0, BOARD_SIZE - 3, new King(PieceColor::White, BISHOPPATHWHITE));
+	CreatePiece(0, 2, new Bishop(PieceColor::White, BISHOPPATHWHITE));
+	CreatePiece(0, BOARD_SIZE - 3, new Bishop(PieceColor::White, BISHOPPATHWHITE));
 
-	CreatePiece(0, 3, new King(PieceColor::White, QUEENPATHWHITE));
+	CreatePiece(0, 3, new Queen(PieceColor::White, QUEENPATHWHITE));
 	CreatePiece(0, BOARD_SIZE - 4, new King(PieceColor::White, KINGPATHWHITE));
 
 }
@@ -66,6 +69,8 @@ Square *Board::GetSquare(int i, int j){
 }
 
 void Board::NewGame(int x, int y){
+
+	Steps->ClearData();
 
 	int startX = x;
 	int startY = y;

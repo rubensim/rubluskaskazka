@@ -33,6 +33,12 @@ pair<char, int> Step::GetStep(Coordinate coordinate){
 			return it->first;
 }
 
+void Step::ClearData(){
+	std::ofstream ofs;
+	ofs.open("StepsFile.txt", std::ofstream::out | std::ofstream::trunc);
+	ofs.close();
+}
+
 Coordinate Step::GetCoordinate(pair<char, int> step){
 	return this->steps[step];
 }
@@ -44,7 +50,7 @@ void Step::RegisterStep(pair<char, int> key, Coordinate coordinate){
 void Step::WriteStep(Coordinate prev, Coordinate current, PieceColor color)
 {
 	ofstream stepFile;
-	stepFile.open("StepsFile.txt", ios::trunc);
+	stepFile.open("StepsFile.txt", ios::app);
 	Write(stepFile, GetStep(prev), GetStep(current), color);
 }
 

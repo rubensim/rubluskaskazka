@@ -82,9 +82,13 @@
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Coortdinate.h" />
     <ClInclude Include="Enums.h" />
-    <ClInclude Include="King.h" />
+    <ClInclude Include="FigureBishop.h" />
+    <ClInclude Include="FigureKnight.h" />
+    <ClInclude Include="FigureQueen.h" />
+    <ClInclude Include="FigureRock.h" />
+    <ClInclude Include="FigureKing.h" />
     <ClInclude Include="Piece.h" />
-    <ClInclude Include="Pown.h" />
+    <ClInclude Include="FigurePown.h" />
     <ClInclude Include="Square.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Step.h" />
@@ -95,6 +99,10 @@
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="ChessGame.cpp" />
     <ClCompile Include="Coordinate.cpp" />
+    <ClCompile Include="FigureBishop.cpp" />
+    <ClCompile Include="FigureKnight.cpp" />
+    <ClCompile Include="FigureQueen.cpp" />
+    <ClCompile Include="FigureRock.cpp" />
     <ClCompile Include="King.cpp" />
     <ClCompile Include="Pown.cpp" />
     <ClCompile Include="Square.cpp" />

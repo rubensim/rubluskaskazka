@@ -1,13 +1,22 @@
-﻿Build started 1/11/2015 7:34:44 PM.
+﻿Build started 1/11/2015 8:24:55 PM.
      1>Project "L:\Projects\rubluskaskazka\Chess\ChessWithUi\ChessWithUi.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\ChessWithUi.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Step.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\ChessWithUi.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Board.cpp ChessGame.cpp Square.cpp Step.cpp
          Step.cpp
+         ChessGame.cpp
+         Board.cpp
+         Generating Code...
      1>l:\projects\rubluskaskazka\chess\chesswithui\step.cpp(34): warning C4715: 'Step::GetStep' : not all control paths return a value
+         Skipping... (no relevant changes detected)
+         Square.cpp
        Lib:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"L:\Projects\rubluskaskazka\Chess\ChessWithUi\Debug\ChessWithUi.lib" /NOLOGO Debug\Board.obj
          Debug\ChessGame.obj
          Debug\Coordinate.obj
+         Debug\FigureBishop.obj
+         Debug\FigureKnight.obj
+         Debug\FigureQueen.obj
+         Debug\FigureRock.obj
          Debug\King.obj
          Debug\Pown.obj
          Debug\Square.obj
@@ -22,4 +31,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.88
+Time Elapsed 00:00:01.76

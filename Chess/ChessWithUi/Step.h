@@ -25,7 +25,7 @@ public:
 	Coordinate GetCoordinate(pair<char, int> step);
 	void RegisterStep(pair<char, int> key, Coordinate coordinate);
 	void WriteStep(Coordinate prev, Coordinate current, PieceColor color);
-	
+	void ClearData();
 private:
 	vector<string> &split(string &s, char delim, vector<string> &elems);
 	void Write(ostream& out, pair<char, int> prev, pair<char, int> current, PieceColor color);

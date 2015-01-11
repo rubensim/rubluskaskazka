@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "King.h"
+#include "FigureKing.h"
 #include "Constants.h"
 
 King::King(PieceColor color, string image) :Piece(color, image){}

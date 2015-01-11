@@ -3,10 +3,6 @@
 #include "BoardUiForm.h"
 #include "Enums.h"
 #include "ImagePiece.h"
-#include "Piece.h"
-#include "King.h"
-#include "Pown.h"
-
 
 SquareUiForm* BoardUiForm::currrentSquare = nullptr;
 map<Coordinate, SquareUiForm*> BoardUiForm::coordinateSystem = BoardUiForm::Init();
